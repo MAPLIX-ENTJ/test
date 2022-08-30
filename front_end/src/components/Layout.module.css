@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: overlay;
+    flex-direction: column;
+    /* //220724 수정 함 해봄 */
+    z-index: 10;
+  }
+  .layout {
+    display: flex;
+    /* margin-top: 56px; */
+    /* flex: 1; */
+  }
+  .contents {
+    width: 80%;
+  }
