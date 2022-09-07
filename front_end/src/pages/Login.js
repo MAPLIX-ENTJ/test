@@ -24,7 +24,7 @@ const Login = () =>  {
     
         console.log(state.id);
     
-        fetch("http://localhost:8000/login", {
+        fetch("http://3.38.252.222:8000/login", {
             method: "POST",
             headers: {
             "Content-Type" : "application/json"

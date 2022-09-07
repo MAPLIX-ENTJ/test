@@ -4,7 +4,7 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 
-const PORT = 8080;
+const PORT = 8000;
 
 // const corsOptions = {
 //   origin: 'http://localhost:8000'
