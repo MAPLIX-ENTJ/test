@@ -39,7 +39,7 @@ const Request = () => {
     if (!media_name || !r_content || !id || !m_type || !r_image) {
       // toast.error("Please provide value into each input field");
     } else {
-      const res = axios.post("http://localhost:8000/mypage/request", {
+      const res = axios.post("http://3.38.107.72:8000/mypage/request", {
         media_name,
         r_content,
         id,

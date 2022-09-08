@@ -46,7 +46,7 @@ const Stamp = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      const res = axios.post("http://localhost:8000/api/stamp", {
+      const res = axios.post("http://3.38.107.72:8000/api/stamp", {
         media_name,
         id,
         m_type

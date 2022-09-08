@@ -7,7 +7,7 @@ const cors = require("cors");
 const PORT = 8000;
 
 // const corsOptions = {
-//   origin: 'http://localhost:8000'
+//   origin: 'http://3.38.107.72:8000'
 // }
 
 const db = mysql.createPool({

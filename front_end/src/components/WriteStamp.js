@@ -26,7 +26,7 @@ export default function WriteStamp({card, openModal}) {
 
     // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://localhost:8000/api/stampcheck'
+    const response = await axios.post('http://3.38.107.72:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     console.log(response.data[0]);
@@ -35,7 +35,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost2 = async () => {
-    const response = await axios.post('http://localhost:8000/api/stampcheck'
+    const response = await axios.post('http://3.38.107.72:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     console.log(response.data[0]);
@@ -44,7 +44,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost3 = async () => {
-    const response = await axios.post('http://localhost:8000/api/stampcheck'
+    const response = await axios.post('http://3.38.107.72:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     console.log(response.data[0]);
@@ -53,7 +53,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost4 = async () => {
-    const response = await axios.post('http://localhost:8000/api/stampcheck'
+    const response = await axios.post('http://3.38.107.72:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     console.log(response.data[0]);
@@ -86,7 +86,7 @@ export default function WriteStamp({card, openModal}) {
       e.preventDefault();
       const part = window.localStorage.getItem("part");
 
-      const res = axios.post("http://localhost:8000/api/writestamp", {
+      const res = axios.post("http://3.38.107.72:8000/api/writestamp", {
         id,
         m_num,
         poster,
@@ -107,7 +107,7 @@ export default function WriteStamp({card, openModal}) {
       const part = 1;
       window.localStorage.setItem('part', 1);
 
-      const res = axios.post("http://localhost:8000/api/stampcheck", {
+      const res = axios.post("http://3.38.107.72:8000/api/stampcheck", {
         id,
         m_num,
         poster,
@@ -132,7 +132,7 @@ export default function WriteStamp({card, openModal}) {
       const part = 2
       window.localStorage.setItem('part', 2);
 
-      const res = axios.post("http://localhost:8000/api/stampcheck", {
+      const res = axios.post("http://3.38.107.72:8000/api/stampcheck", {
         id,
         m_num,
         poster,
@@ -155,7 +155,7 @@ export default function WriteStamp({card, openModal}) {
       const part = 3;
       window.localStorage.setItem('part', 3);
 
-      const res = axios.post("http://localhost:8000/api/stampcheck", {
+      const res = axios.post("http://3.38.107.72:8000/api/stampcheck", {
         id,
         m_num,
         poster,
@@ -178,7 +178,7 @@ export default function WriteStamp({card, openModal}) {
       const part = 4;
       window.localStorage.setItem('part', 4);
 
-      const res = axios.post("http://localhost:8000/api/stampcheck", {
+      const res = axios.post("http://3.38.107.72:8000/api/stampcheck", {
         id,
         m_num,
         poster,

@@ -63,7 +63,7 @@ const loadData = () => {
         }
 
     if (Object.values(activeCate)[0].flag === true){ // likelist
-        axios.post('http://localhost:8000/api/likelist',{id})
+        axios.post('http://3.38.107.72:8000/api/likelist',{id})
         .then(function (response) {
         console.log(response.data);
         setCardList(response.data);
@@ -71,8 +71,8 @@ const loadData = () => {
         // console.log(Object.values(activeCate)[0].flag);
         });
     } else if (Object.values(activeCate)[1].flag === true){
-        // axios.get('http://localhost:8000/api/search')
-        axios.get('http://localhost:8000/api/search/title', {params: {
+        // axios.get('http://3.38.107.72:8000/api/search')
+        axios.get('http://3.38.107.72:8000/api/search/title', {params: {
           'media': ''
       }})
         .then(function (response) {

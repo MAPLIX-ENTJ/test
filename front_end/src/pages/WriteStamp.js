@@ -35,7 +35,7 @@ const WriteStamp = () => {
       console.log(record_title, record_content);
       e.preventDefault();
       
-      const res = axios.post("http://localhost:8000/api/writestamp", {
+      const res = axios.post("http://3.38.107.72:8000/api/writestamp", {
         id,
         m_num,
         poster,

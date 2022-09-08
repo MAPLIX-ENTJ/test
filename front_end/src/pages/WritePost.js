@@ -31,7 +31,7 @@ const WritePost = () => {
     if (!cm_title || !cm_content || !writer || !cm_type || !cm_image) {
       // toast.error("Please provide value into each input field");
     } else {
-      const res = axios.post("http://localhost:8000/community/writepost", {
+      const res = axios.post("http://3.38.107.72:8000/community/writepost", {
         cm_title,
         cm_content,
         writer,

@@ -49,7 +49,7 @@ const Login = () =>  {
                     })
                 }
                 else {
-                    // const res = axios.post("http://localhost:8000/", {id,pw})
+                    // const res = axios.post("http://3.38.107.72:8000/", {id,pw})
                     // .then((res) => {
                         alert("로그인 성공")
                         const nick_name = json.nick_name

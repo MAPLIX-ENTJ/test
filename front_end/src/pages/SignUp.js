@@ -43,7 +43,7 @@ const SignUp = () => {
 
     console.log(state.id);
 
-    fetch("http://localhost:8000/api/checkid", {
+    fetch("http://3.38.107.72:8000/api/checkid", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
@@ -92,7 +92,7 @@ const SignUp = () => {
 
     console.log(state.id);
 
-    fetch("http://localhost:8000/api/checknickname", {
+    fetch("http://3.38.107.72:8000/api/checknickname", {
         method: "POST",
         headers: {
             "Content-Type" : "application/json"
@@ -221,7 +221,7 @@ const SignUp = () => {
       // toast.error("Please provide value into each input field");
     } else {
         console.log(email, id, pw, u_name, birth, gender, nick_name);
-      const res = axios.post("http://localhost:8000/signup", {
+      const res = axios.post("http://3.38.107.72:8000/signup", {
         email,
         id,
         pw,

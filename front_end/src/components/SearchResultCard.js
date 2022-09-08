@@ -15,7 +15,7 @@ export default function SearchResultCard({card}) {
 
   // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://localhost:8000/api/post/likelistcheck'
+    const response = await axios.post('http://3.38.107.72:8000/api/post/likelistcheck'
     , {id, l_num}
     );
     // console.log(response.data[0].l_num);
@@ -45,18 +45,18 @@ export default function SearchResultCard({card}) {
     console.log(id, l_num);
     if (id == undefined) return alert("로그인 후 이용 가능합니다."), document.location.href = '/login';
     else return (
-      axios.post('http://localhost:8000/api/post/likelistcheck',{id, l_num})
+      axios.post('http://3.38.107.72:8000/api/post/likelistcheck',{id, l_num})
         .then(function (response) {
           console.log(response)
           if (response.data[0] == undefined) return (
-            axios.post('http://localhost:8000/api/post/likelist',{id, l_num})
+            axios.post('http://3.38.107.72:8000/api/post/likelist',{id, l_num})
             .then(function (response) {
               alert("즐겨찾기에 추가되었습니다")
               setLike(true);
               })
           )
           else return (
-            axios.post('http://localhost:8000/api/post/deletelikelist',{id, l_num})
+            axios.post('http://3.38.107.72:8000/api/post/deletelikelist',{id, l_num})
             .then(function (response) {
               alert("즐겨찾기에서 삭제되었습니다.")
               setLike(false);
