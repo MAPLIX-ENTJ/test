@@ -12,6 +12,7 @@ const PORT = 8000;
 
 const db = mysql.createPool({
     host: "3.38.107.72",
+    port: "3306",
     user: "maplix_test",
     password: "1234",
     database: "test",
