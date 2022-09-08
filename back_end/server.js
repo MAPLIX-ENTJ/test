@@ -267,26 +267,26 @@ app.post("/api/login", (req, res) => {
   user_info.tf = true;
 
   console.log(id);
-  //res.send(user_info);
-  let sqlQueryId = "SELECT id FROM maplixdb.user WHERE id= ?;";
+  res.send(user_info);
+  // let sqlQueryId = "SELECT id FROM maplixdb.user WHERE id= ?;";
 
-  const sqlQuery = "SELECT COUNT(id) as result FROM maplixdb.user WHERE id=?;";
-  db.query(sqlQueryId, [id], (err, result) => {
-    if (result[0] == undefined) { // 아이디 존재 X
-      user_info.tf = false;
-      res.send(user_info);
-    }
-    else {
-      const sqlQueryPw = "SELECT pw, nick_name FROM maplixdb.user WHERE id=?;";
-      db.query(sqlQueryPw, [id], (err, resultPw) => {
-          user_info.tf = true;
-          user_info.id = result[0].id;
-          user_info.pw = resultPw[0].pw;
-          user_info.nick_name = resultPw[0].nick_name;
-          res.send(user_info);
-      })
-    }
-  })
+  // const sqlQuery = "SELECT COUNT(id) as result FROM maplixdb.user WHERE id=?;";
+  // db.query(sqlQueryId, [id], (err, result) => {
+  //   if (result[0] == undefined) { // 아이디 존재 X
+  //     user_info.tf = false;
+  //     res.send(user_info);
+  //   }
+  //   else {
+  //     const sqlQueryPw = "SELECT pw, nick_name FROM maplixdb.user WHERE id=?;";
+  //     db.query(sqlQueryPw, [id], (err, resultPw) => {
+  //         user_info.tf = true;
+  //         user_info.id = result[0].id;
+  //         user_info.pw = resultPw[0].pw;
+  //         user_info.nick_name = resultPw[0].nick_name;
+  //         res.send(user_info);
+  //     })
+  //   }
+  // })
 
   
 });
