@@ -17,9 +17,12 @@ import styles from "../components/Community.module.css";
 import SearchResultCard from '../components/SearchResultCard';
 import Pagination from '../components/Pagination';
 
-function SearchPage ( ) {
+const { kakao } = window;
+
+function SearchPage () {
+
+  const id = window.localStorage.getItem("id");
   
-  const location = useLocation();
   const navigate = useNavigate();
   // 메인에서 검색한 키워드 받아오기
   const useparams = useParams();
@@ -37,93 +40,110 @@ function SearchPage ( ) {
 
 
   // 변수들
-const [cardList, setCardList] = useState([]); // 키워드 검색시 반환된 데이터
-const [isLiked, setIsLiked] = useState(); // 즐겨찾기 추가하기 위한 변수
-//const [filtered, setFiltered] = useState(() => get비ㅏㅆㄴ초기계산값()); // 필터링된 결과
-const [filtered, setFiltered] = useState([]); 
+  const [cardList, setCardList] = useState([]); // 키워드 검색시 반환된 데이터
+  const [isLiked, setIsLiked] = useState(); // 즐겨찾기 추가하기 위한 변수
+  //const [filtered, setFiltered] = useState(() => get비ㅏㅆㄴ초기계산값()); // 필터링된 결과
+  const [filtered, setFiltered] = useState([]); 
+
+  const initialCate = [
+    { category : "mountain" , flag : true, realCate: "산"},
+    { category : "forest" , flag : true, realCate: "숲"},
+    { category : "sea" , flag : true, realCate: "바다"},
+    { category : "river" , flag : true, realCate: "강"},
+    { category : "restaurant" , flag : true, realCate: "음식점"},
+    { category : "cafe" , flag : true, realCate: "카페"},
+    { category : "activity" , flag : true, realCate: "액티비티"},
+    { category : "tour" , flag : true, realCate: "관광지"},
+    { category : "etc" , flag : true, realCate: "기타"}
+  ];
 
 
   // 데이터 받아오기
-  const loadData = async () => {
-    let response;
+  const loadData = () => {
     if ( searchCate === "title"){
-      response = await axios.get('http://localhost:8000/api/search/title', {
+      axios.get('http://localhost:8000/api/search/title', {
         params: {
             'media': search
         }
+      }).then(function (response) {
+        console.log(response.data);
+        setCardList(response.data);
+        setFiltered(response.data);
       });
+
     } else if ( searchCate === "area"){
-      response = await axios.get('http://localhost:8000/api/search/area', {
+      axios.get('http://localhost:8000/api/search/area', {
         params: {
             'media': search
         }
+      }).then(function (response) {
+        console.log(response.data);
+        setCardList(response.data);
+        setFiltered(response.data);
       });
     }
 
-    if (response.data.length > 0){
-    setCardList(response.data);
-    setFiltered(response.date);
-    }else{
-      console.log("결과가 없습니다 어쩌구 생성")
-    }
-
-    console.log("로드데이터", response.data.length);
-    console.log(response.data);
 };
 
 
-
-let cnt = 0;
 //const [cnt, setCnt] = useState(0);
-const [activeCate, setActiveCate] = useState([ // 필터 어떤거 클릭됐는지, true : 클릭된상태
-  { category : "mountain" , flag : false, realCate: "산"},
-  { category : "forest" , flag : false, realCate: "숲"},
-  { category : "sea" , flag : false, realCate: "바다"},
-  { category : "river" , flag : false, realCate: "강"},
-  { category : "restaurant" , flag : false, realCate: "음식점"},
-  { category : "cafe" , flag : false, realCate: "카페"},
-  { category : "activity" , flag : false, realCate: "액티비티"},
-  { category : "tour" , flag : false, realCate: "관광지"},
-  { category : "etc" , flag : false, realCate: "기타"}
-]);
-
-useEffect(()=> { 
-  loadData();
-  // console.log(useparams.cate); // 왜 얘는 되고
-  // console.log(cate); // 얘는 안되는지;
-  // console.log(searchWord);
-}, [search, searchCate] ); //search, searchCate
+const [activeCate, setActiveCate] = useState(null); // 필터 어떤거 클릭됐는지, true : 클릭된상태
+const [courselist, setCourselist] = useState([])
 
 useEffect(() => {
-  // activeCate안에 값 바뀔때마다 filter로 flag값이 true인 값들의 category만 뽑아서 temp에 저장
-  // 그 temp
-  var arr = [];
-  const temp = activeCate.map((obj) => {
-    if (obj.flag === true) 
-      arr.push(obj.realCate);
-  } );
-  console.log(arr);
+  if (activeCate){
+    loadData();
+  }
+},[activeCate, search, searchCate]);
+
+useEffect(()=> {
+  setActiveCate(initialCate);
+  // console.log('result = ', result);
+}, []);
+
+
+
+// useEffect(() => {
+
+  
+//   // activeCate안에 값 바뀔때마다 filter로 flag값이 true인 값들의 category만 뽑아서 temp에 저장
+//   // 그 temp
+//   if (activeCate){
+//     const temp = activeCate.map((obj) => {
+//       if (obj.flag === true) 
+//         arr.push(obj.realCate);
+//     } );
+//     console.log(arr);
+   
+//     let filtered = cardList.filter((card) => arr.includes(card.category) );
+//     setFiltered(filtered);
+//   }
+  
  
-  let filtered = cardList.filter((card) => arr.includes(card.category) );
-  setFiltered(filtered);
- 
-}, [ activeCate])
+// }, [ activeCate])
 
 const filterOn = (e) => {
+  if(document.getElementsByClassName('filterOn').length !== 0) {
+  document.getElementsByClassName('filterOn')[0].classList.remove('filterOn') 
+  }
+
+  const newnew = cardList.filter((card) => card.category === e.target.id)
+
+  console.log(newnew)
+
   console.log("필터 버튼 눌림" + e.target.id);
-  var count = 0;
-  const newKeywords = activeCate.map(k => {
-    if (k.category === e.target.id) {
-      return { ...k, flag : !k.flag,};
-    } else {
-      return k;
-    }
-  });
-  newKeywords.map(item => {
-    if (item.flag === true) count++;
-  });
-  setActiveCate(newKeywords);
-  console.log(count);
+  e.target.parentElement.classList.add('filterOn');
+  // debugger
+  // const newKeywords = activeCate.map(k => {
+  //   if (k.category === e.target.id) {
+  //     return {...k, flag : true};
+  //   }else {
+  //     return {...k, flag : false};
+  //   }
+  // });
+  // setActiveCate((prev) => {return newKeywords});
+
+  setFiltered(newnew);
   //console.log(Object.values(activeCate));
   // 버튼 눌릴때마다 true인 것들의 이름만 찾아서 cardlist filter해줘야함 
 };
@@ -136,7 +156,7 @@ const handleUserInput = (e) => {
 
 const onSubmitSearchbar = (e) => {
   console.log(e);
-  //e.preventDefault();
+  e.preventDefault();
   if(e.key === 'Enter') {
   onClickSearchbar(e);
   }
@@ -144,14 +164,17 @@ const onSubmitSearchbar = (e) => {
 
 const onClickSearchbar = (e) => {
   setSearch(e.target.value);
-  navigate(`/search/${searchCate}/${search}`);
+  e.preventDefault();
+  var temp = document.getElementById('searchbox').value
+  navigate(`/search/${searchCate}/${temp}`);
   console.log('파라미터'+ search);
 }
 
 const ClickedSearchCate = (e) => {
   e.preventDefault();
   searchCate = e.target.id;
-  navigate(`/search/${searchCate}/${search}`);
+  var temp = document.getElementById('searchbox').value
+  navigate(`/search/${searchCate}/${temp}`);
 }
 const clickall = () => {
   setActiveCate((activeCate) =>  activeCate.map(k => {
@@ -166,7 +189,7 @@ const indexOfLast = currentPage * postsPerPage; //postsPerPage : 총 데이터�
 const indexOfFirst = indexOfLast - postsPerPage;
 const currentPosts = (posts) => {
   let currentPosts = 0;
-  currentPosts = cardList.slice(indexOfFirst, indexOfLast);
+  currentPosts = filtered.slice(indexOfFirst, indexOfLast);
   return currentPosts;
 };
 
@@ -179,47 +202,47 @@ const currentPosts = (posts) => {
           <div className='Filter'>
 
             <button className='FilterIcons'  onClick={filterOn}>
-              <img src={mountain} alt = "mountain" id="mountain" idx="0" />
+              <img src={mountain} alt = "mountain" id="산" idx="0" kid="산"/>
               <li>#산</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={forest} alt = "forest" id="forest" idx="1"/>
+              <img src={forest} alt = "forest" id="숲" idx="1"/>
               <li>#숲</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={sea} alt = "sea" id="sea" idx="2"/>
+              <img src={sea} alt = "sea" id="바다" idx="2"/>
               <li>#바다</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={river} alt = "river" id="river" idx="3"/>
+              <img src={river} alt = "river" id="강" idx="3"/>
               <li>#강</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={restaurant} alt = "restaurant" id="restaurant" idx="4"/>
+              <img src={restaurant} alt = "restaurant" id="음식점" idx="4"/>
               <li>#음식점</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={cafe} alt = "cafe" id="cafe" idx="5"/>
+              <img src={cafe} alt = "cafe" id="카페" idx="5"/>
               <li>#카페</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={acitivity} alt = "activity" id="activity" idx="6"/>
+              <img src={acitivity} alt = "activity" id="액티비티" idx="6"/>
               <li>#액티비티</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={tour} alt = "tour" id="tour" idx="7"/>
+              <img src={tour} alt = "tour" id="관광지" idx="7"/>
               <li>#관광지</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={etc} alt = "etc" id="etc" idx="8" />
+              <img src={etc} alt = "etc" id="기타" idx="8" />
               <li>#기타</li>            
             </button>
           </div>
@@ -234,23 +257,24 @@ const currentPosts = (posts) => {
             </div>
             
             <input
+                id="searchbox"
                 type="text" 
                 onChange={handleUserInput}
                 onKeyPress={onSubmitSearchbar}
-                placeholder="search"
-                defaultValue={searchWord}
+                placeholder={search}
+                // defaultValue={search}
                 value={search}
                 />
             
-            <button type='submit' onClick={onClickSearchbar}>검색</button>
-            <button  onClick={clickall}>
+            <button type='submit' onClick={onClickSearchbar} value={search}>검색</button>
+            {/* <button className='FilterIcons'  onClick={clickall}>
               <li>#전체 결과 조회하기</li>
-            </button>
+            </button> */}
 
             <div className={styles.card_list}>
                 { filtered && currentPosts(filtered).map((card, index) => {
                     return (
-                        <div card = {card}>
+                        <div card =  {card}>
                             <SearchResultCard 
                                 key={card.l_num}   
                                 card={card}
@@ -265,11 +289,12 @@ const currentPosts = (posts) => {
             
             <Pagination
                 postsPerPage={postsPerPage}
-                totalPosts={cardList.length}
+                totalPosts={filtered.length}
                 paginate={setCurrentPage}
               />
         </div>
-        <MapContainer />
+        <MapContainer activeCate={activeCate} cardList={filtered} courselist={courselist}/>
+
 
         </div>
       </div>

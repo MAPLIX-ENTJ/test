@@ -11,10 +11,10 @@ const PORT = 8000;
 // }
 
 const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "1234",
-    database: "test",
+    host: "database-1.cerve3jki1fl.ap-northeast-2.rds.amazonaws.com",
+    user: "admin",
+    password: "1234567890",
+    database: "maplixdb",
 });
 
 app.use(express.json());
@@ -54,7 +54,7 @@ app.get("/api/search/title", (req, res) => {
 //지역 검색시 
 app.get("/api/search/area", (req, res) => {
   const params = "%" + req.query.media + "%";
-  let sqlGet = "SELECT * FROM test.location AS L "; 
+  let sqlGet = "SELECT L.*, P.p_name, P.p_num, P.address, P.category, M.m_name FROM test.location AS L "; 
   sqlGet += " JOIN test.media AS M ON L.m_num = M.m_num JOIN test.place AS P ON P.p_num = L.p_num ";
   sqlGet += " WHERE L.p_num = any (SELECT place.p_num FROM test.place WHERE place.address LIKE ? ) " ;
 
@@ -107,19 +107,23 @@ app.get('/api/course', (req, res) => {
   sqlGet += " WHERE L.p_num = any (SELECT place.p_num FROM test.place WHERE place.category = '관광지' ) " ;
 })
 
-app.get("/api/mycourse", (req, res) => {
-  const sqlGet = "SELECT * FROM test.mycourse WHERE id='예은'";
-  db.query(sqlGet, (error, result) => {
-    res.send(result.reverse());
+app.post("/api/mycourse", (req, res) => {
+  const id = req.body.id;
+
+  const sqlGet = "SELECT * FROM test.mycourse WHERE id = ?";
+  
+  db.query(sqlGet, [id], (error, result) => {
+    // res.send(result.reverse());
+    res.send(result);
   });
 });
 
 
 app.get("/api", (req, res) => {
   // 데이터베이스에 제대로 들어오는거 확인하면 쿼리문 삭제하세유
-  // const sqlQuery = "INSERT INTO test.media (m_name, m_name2, m_type) VALUES ('가', '나', '드라마')";
+  const sqlQuery = "INSERT INTO test.media (m_name, m_name2, m_type) VALUES ('다', '라', '드라마')";
   // ---------------------------------------------------------------------
-  // res.setHeader('Access-Control-Allow-origin', 'https://localhost');
+  res.setHeader('Access-Control-Allow-origin', 'https://localhost');
 
   db.query(sqlQuery, (err, result) => {
     console.log(err);
@@ -213,6 +217,30 @@ app.post("/api/post/likelist", (req, res) => {
 });
 })
 
+app.post("/api/post/likelistcheck", (req, res) => {
+  const id = req.body.id;
+  const l_num = req.body.l_num;
+
+  console.log(id, l_num)
+  const sqlQuery = "SELECT * FROM test.likelist WHERE id = ? AND l_num = ?";
+  db.query(sqlQuery, [id, l_num], (err, result) => {
+    res.send(result); 
+    console.log(result)
+});
+})
+
+app.post("/api/post/deletelikelist", (req, res) => {
+  const id = req.body.id;
+  const l_num = req.body.l_num;
+
+  console.log(id, l_num)
+  const sqlQuery = "DELETE FROM test.likelist WHERE id = ? AND l_num = ?";
+  db.query(sqlQuery, [id, l_num], (err, result) => {
+    res.send('즐겨찾기에서 삭제되었습니다.'); 
+    console.log(result)
+});
+})
+
 app.post("/signup", (req, res) => {
   const email = req.body.email;
   const id = req.body.id;
@@ -239,17 +267,17 @@ app.post("/api/login", (req, res) => {
   user_info.tf = true;
 
   console.log(id);
+  //res.send(user_info);
+  let sqlQueryId = "SELECT id FROM maplixdb.user WHERE id= ?;";
 
-  const sqlQueryId = "SELECT id FROM test.user WHERE id=?;";
-
-  // const sqlQuery = "SELECT COUNT(id) as result FROM user WHERE id=?;";
+  const sqlQuery = "SELECT COUNT(id) as result FROM maplixdb.user WHERE id=?;";
   db.query(sqlQueryId, [id], (err, result) => {
     if (result[0] == undefined) { // 아이디 존재 X
       user_info.tf = false;
       res.send(user_info);
     }
     else {
-      const sqlQueryPw = "SELECT pw, nick_name FROM test.user WHERE id=?;";
+      const sqlQueryPw = "SELECT pw, nick_name FROM maplixdb.user WHERE id=?;";
       db.query(sqlQueryPw, [id], (err, resultPw) => {
           user_info.tf = true;
           user_info.id = result[0].id;
@@ -259,6 +287,8 @@ app.post("/api/login", (req, res) => {
       })
     }
   })
+
+  
 });
 
 app.post("/api/stamp", (req, res) => {

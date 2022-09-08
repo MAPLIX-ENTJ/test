@@ -132,3 +132,29 @@
   margin-left: 75px;
   box-shadow: 5px 5px 7px #00000030;
 }
+
+.stamp_form_container{
+  padding: 40px;
+  box-sizing: border-box;
+  background: #EFF1F0;
+  margin-left: 75px;
+  box-shadow: 5px 5px 7px #00000030;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  gap: 17px;
+}
+
+/* .stamp_form_container img{
+  width: 200px;
+  opacity: 0.5;
+} */
+
+:global #before_img {
+  width: 200px;
+  opacity: 0.5;
+}
+
+:global #after_img {
+  width: 200px;
+}

@@ -47,10 +47,10 @@ function Course(){
 //     if (k.flag )
 //   }
 //       return k.flag === true ? true : false })
-const [dddd, setdddd] = useState("")
 
 const [cardList, setCardList] = useState([])
 
+const [courselist, setCourselist] = useState([])
 
 const loadData = () => {
 
@@ -71,30 +71,34 @@ const loadData = () => {
         // console.log(Object.values(activeCate)[0].flag);
         });
     } else if (Object.values(activeCate)[1].flag === true){
-        axios.get('http://localhost:8000/api/search')
+        // axios.get('http://localhost:8000/api/search')
+        axios.get('http://localhost:8000/api/search/title', {params: {
+          'media': ''
+      }})
         .then(function (response) {
             setCardList(response.data);
         });
+        
     } else{
       var ps = new kakao.maps.services.Places(); 
 
-      ps.keywordSearch(nowcate , placesSearchCB, {page: 1 , size : 15}); 
-      ps.keywordSearch(nowcate , placesSearchCB, {page: 2 , size : 15}); 
-      ps.keywordSearch(nowcate , placesSearchCB, {page: 3 , size : 15}); 
+      ps.keywordSearch(nowcate , placesSearchCB); 
+      // ps.keywordSearch(nowcate , placesSearchCB, {page: 2 , size : 15}); 
+      // sps.keywordSearch(nowcate , placesSearchCB, {page: 3 , size : 15}); 
       
-      const newnew = []
+      
 
       function placesSearchCB (data, status, pagination) {
         if (status === kakao.maps.services.Status.OK) {
           console.log(data)
+          const newnew = []
           for (var a=0; a < data.length; a++){
             newnew.push({address : data[a].address_name, category : nowcate, p_name : data[a].place_name, p_num : a})
           }
-
+          setCardList(newnew);
           
         }
       }
-      setCardList(newnew);
     }
     console.log(cardList.length)
     
@@ -223,20 +227,20 @@ useEffect(()=> {
         </div>
 
         <div className='Lower'>
-          <form className="inputForm" onSubmit={handleSubmit}>
+          {/* <form className="inputForm" onSubmit={handleSubmit}>
             <input
               placeholder="Search Place..."
               onChange={onChange}
               value={inputText}
             />
             <button type="submit">검색</button>
-          </form>
+          </form> */}
 
           <div className="course-sidebar">
             <div id="course-line"></div>
-            <CourseAdd activeCate={activeCate} cardList={cardList}/>
+            <CourseAdd activeCate={activeCate} cardList={cardList} courselist={courselist} setCourselist={setCourselist}/>
           </div>
-          <MapContainer dddd={dddd} activeCate={activeCate} cardList={cardList} setCardList={setCardList} searchPlace={place} />      
+          <MapContainer activeCate={activeCate} cardList={cardList} courselist={courselist}  />      
           {/* <div
           id="kakaoMap"
           style={{
