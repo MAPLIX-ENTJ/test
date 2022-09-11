@@ -21,7 +21,7 @@ export default function CommunityCard({card}) {
             </ol>
 
             <div className={styles.img_item}>
-              <img src={card.cm_image}></img>
+              <img src={"http://3.38.107.72:8000" + card.cm_image}></img>
               {card.cm_image}
             </div>
         </div>

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e7cf74bb.css",
-    "main.js": "/static/js/main.5f1542f7.js",
+    "main.js": "/static/js/main.7c5063eb.js",
     "static/media/Jeju.png": "/static/media/Jeju.a22430c6bcd01246a135.png",
     "static/media/Pohang.png": "/static/media/Pohang.c72bad22853da5a16e90.png",
     "static/media/Busan.png": "/static/media/Busan.462d2ad427a64731c569.png",
@@ -20,10 +20,10 @@
     "static/media/write.png": "/static/media/write.0f35cbac16b6654f290b.png",
     "index.html": "/index.html",
     "main.e7cf74bb.css.map": "/static/css/main.e7cf74bb.css.map",
-    "main.5f1542f7.js.map": "/static/js/main.5f1542f7.js.map"
+    "main.7c5063eb.js.map": "/static/js/main.7c5063eb.js.map"
   },
   "entrypoints": [
     "static/css/main.e7cf74bb.css",
-    "static/js/main.5f1542f7.js"
+    "static/js/main.7c5063eb.js"
   ]
 }

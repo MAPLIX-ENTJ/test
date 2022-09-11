@@ -147,9 +147,9 @@ app.post("/api/community/writepost", (req, res) =>{
 });
 
 const multer = require('multer');
-const upload = multer({dest : '../front_end/public/upload'})
+const upload = multer({dest : './upload'})
 
-app.use('/image', express.static('../front_end/public/upload'))
+app.use('/image', express.static('./upload'))
 
 app.post("/api/mypage/request", upload.single('image'), (req, res) =>{
   const media_name = req.body.media_name; 
