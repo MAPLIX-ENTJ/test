@@ -146,19 +146,27 @@ app.post("/api/community/writepost", (req, res) =>{
   });
 });
 
-// app.post("/mypage/request", (req, res) =>{
-//   const media_name = req.body.media_name; 
-//   const r_content = req.body.r_content;
-//   const id = req.body.id; 
-//   const m_type = req.body.m_type; 
-//   const r_image = req.body.r_image; 
-  
+const multer = require('multer');
+const upload = multer({dest : '../front_end/public/upload'})
 
-//   const sqlQuery = "INSERT INTO `test`.`request` (`media_name`, `r_content`, `id`, `m_type`, `r_image`) VALUES (?,?,?,?,?);";
-//   db.query(sqlQuery, [media_name, r_content, id, m_type, r_image], (err, result) => {
-//       res.send('success!'); 
-//   });
-// });
+app.use('/image', express.static('../front_end/public/upload'))
+
+app.post("/api/mypage/request", upload.single('image'), (req, res) =>{
+  const media_name = req.body.media_name; 
+  const r_content = req.body.r_content;
+  const id = req.body.id; 
+  const m_type = req.body.m_type; 
+  const r_image = '/upload/' + req.file.filename; 
+  // const fd = req.body.fd;
+  
+  // console.log(media_name, fd);
+
+  const sqlQuery = "INSERT INTO `test`.`request` (`media_name`, `r_content`, `id`, `m_type`, r_image) VALUES (?,?,?,?,?);";
+  db.query(sqlQuery, [media_name, r_content, id, m_type, r_image], (err, result, fields) => {
+      res.send(result); 
+      console.log(result)
+  });
+});
 
 app.post("/api/checkid", (req, res) => {
   const id = req.body.id;

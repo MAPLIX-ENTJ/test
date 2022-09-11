@@ -21,7 +21,8 @@ export default function CommunityCard({card}) {
             </ol>
 
             <div className={styles.img_item}>
-              임시 이미지123
+              <img src={card.cm_image}></img>
+              {card.cm_image}
             </div>
         </div>
 
