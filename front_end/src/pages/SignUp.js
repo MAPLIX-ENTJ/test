@@ -141,6 +141,11 @@ const SignUp = () => {
         console.log(gender);
     }
 
+    const onClickTerms =(e) => {
+        e.preventDefault();
+        console.log(checked)
+    }
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setState({ ...state, [name]: value });
@@ -246,7 +251,7 @@ const SignUp = () => {
 
   return (
         <div className="SignUp">
-            <div id="title">Maplix</div>
+            <div id="titleMain">Maplix</div>
             <div className={styles.sub_txt}>하나의 아이디로 Maplix의 다양한 서비스를 이용해보세요.</div>
 
             <div className="signup_container">
@@ -306,7 +311,7 @@ const SignUp = () => {
                     <div className={styles.TermsOfService}>
                         <input type="checkbox" name="agree" value="yes" checked={checked} onChange={checkbox}/>
                         <span>Maplix에서 제공하는 서비스 약관에 동의합니다.</span>
-                        <button>약관 보기</button>
+                        <button onClick={onClickTerms}>약관 보기</button>
                     </div>
 
                     <div>
