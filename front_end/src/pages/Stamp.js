@@ -57,7 +57,7 @@ const Stamp = () => {
         alert("컨텐츠 제목을 입력해주세요")
       }
       else {
-        const res = axios.post("http://localhost:8000/api/stamp", {
+        const res = axios.post("http://3.38.107.72:8000/api/stamp", {
           media_name,
           id,
           m_type
@@ -89,7 +89,7 @@ const Stamp = () => {
     const onClickMedia = (e) => {
       setState({media_name: e.target.id})
       const media_name = e.target.id
-      const res = axios.post("http://localhost:8000/api/stamp", {
+      const res = axios.post("http://3.38.107.72:8000/api/stamp", {
           media_name,
           id,
           m_type

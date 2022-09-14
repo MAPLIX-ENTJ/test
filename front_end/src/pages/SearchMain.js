@@ -74,7 +74,7 @@ function Search({id}) {
 
   const onClickMedia = (m_type) => {
     setAreaModal(false)
-    axios.post("http://localhost:8000/api/media", {m_type})
+    axios.post("http://3.38.107.72:8000/api/media", {m_type})
       .then(function (response) {
         console.log(response.data);
         setMedia(response.data)

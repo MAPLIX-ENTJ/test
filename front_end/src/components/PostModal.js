@@ -45,7 +45,7 @@ function PostModal(props) {
               <ul className="modal-writer">{modal.writer}</ul>
               <ul className="modal-date">{modal.wr_date}</ul>
               <div style={{display:"flex", justifyContent: "space-between"}}>
-                <div className="modal-img"><img className="modal-img" src={'http://localhost:8000' + modal.cm_image} onError={handleImgError} width="190px" height="190px"></img></div>
+                <div className="modal-img"><img className="modal-img" src={'http://3.38.107.72:8000' + modal.cm_image} onError={handleImgError} width="190px" height="190px"></img></div>
                 <div className="modal-body">{modal.cm_content}</div>
               </div>
             </ol>

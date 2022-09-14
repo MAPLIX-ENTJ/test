@@ -7,11 +7,11 @@ const cors = require("cors");
 const PORT = 8000;
 
 // const corsOptions = {
-//   origin: 'http://localhost:8000'
+//   origin: 'http://3.38.107.72:8000'
 // }
 
 const db = mysql.createPool({
-    host: "localhost",
+    host: "3.38.107.72",
     user: "root",
     password: "1234",
     database: "test",
@@ -338,7 +338,7 @@ app.get("/api", (req, res) => {
   // 데이터베이스에 제대로 들어오는거 확인하면 쿼리문 삭제하세유
   const sqlQuery = "INSERT INTO test.media (m_name, m_name2, m_type) VALUES ('다', '라', '드라마')";
   // ---------------------------------------------------------------------
-  res.setHeader('Access-Control-Allow-origin', 'https://localhost');
+  res.setHeader('Access-Control-Allow-origin', 'https://3.38.107.72');
 
   db.query(sqlQuery, (err, result) => {
     console.log(err);

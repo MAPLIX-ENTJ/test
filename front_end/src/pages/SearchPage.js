@@ -65,7 +65,7 @@ function SearchPage () {
   // 데이터 받아오기
   const loadData = () => {
     if ( searchCate === "title"){
-      axios.get('http://localhost:8000/api/search/title', {
+      axios.get('http://3.38.107.72:8000/api/search/title', {
         params: {
             'media': search
         }
@@ -76,7 +76,7 @@ function SearchPage () {
       });
 
     } else if ( searchCate === "area"){
-      axios.get('http://localhost:8000/api/search/area', {
+      axios.get('http://3.38.107.72:8000/api/search/area', {
         params: {
             'media': search
         }
@@ -385,13 +385,13 @@ export default SearchPage;
 //   const loadData = async () => {
 //     let response;
 //     if ( searchCate === "title"){
-//       response = await axios.get('http://localhost:8000/api/search/title', {
+//       response = await axios.get('http://3.38.107.72:8000/api/search/title', {
 //         params: {
 //             'media': search
 //         }
 //       });
 //     } else if ( searchCate === "area"){
-//       response = await axios.get('http://localhost:8000/api/search/area', {
+//       response = await axios.get('http://3.38.107.72:8000/api/search/area', {
 //         params: {
 //             'media': search
 //         }
