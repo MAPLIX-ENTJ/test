@@ -94,7 +94,7 @@ app.post("/api/likelist", (req, res) => {
   console.log(id)
   // 현재 로그인한 id를 user에서 찾고, likelist에서 그 id가 좋아요한 장소 num ( l_num )
   let sqlGet = " SELECT L.*, m_name, m_type, p_name, address, category, P.p_y, P.p_x FROM test.location As L ";
-  sqlGet += "JOIN test.place AS P ON L.l_num = P.p_num JOIN test.media AS M ON L.l_num = M.m_num ";
+  sqlGet += "JOIN test.place AS P ON L.l_num = P.p_num JOIN test.media AS M ON L.m_num = M.m_num ";
   sqlGet += "WHERE L.l_num = any (SELECT l_num FROM test.likelist WHERE likelist.id = ?) ";
   // location (미디어num, 장소num)에서 미디어 num
   db.query(sqlGet, [id], (error, result) => {
