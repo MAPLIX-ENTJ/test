@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.c2031043.css",
-    "main.js": "/static/js/main.257d726f.js",
+    "main.js": "/static/js/main.b36b43ee.js",
     "static/media/Jeju.png": "/static/media/Jeju.a22430c6bcd01246a135.png",
-    "static/media/마커9.png": "/static/media/마커9.8e69c0d5e6405ec630e3.png",
-    "static/media/마커5.png": "/static/media/마커5.3fe8a7ee2387e0f4d098.png",
-    "static/media/마커3.png": "/static/media/마커3.54b0da7a58ab266fe03b.png",
-    "static/media/마커7.png": "/static/media/마커7.cf0043c2f3ba2a8d421e.png",
-    "static/media/마커1.png": "/static/media/마커1.831c762a3394c5492120.png",
+    "static/media/marker9.png": "/static/media/marker9.8e69c0d5e6405ec630e3.png",
+    "static/media/marker5.png": "/static/media/marker5.3fe8a7ee2387e0f4d098.png",
+    "static/media/marker3.png": "/static/media/marker3.54b0da7a58ab266fe03b.png",
+    "static/media/marker7.png": "/static/media/marker7.cf0043c2f3ba2a8d421e.png",
+    "static/media/marker1.png": "/static/media/marker1.831c762a3394c5492120.png",
     "static/media/Pohang.png": "/static/media/Pohang.c72bad22853da5a16e90.png",
-    "static/media/마커8.png": "/static/media/마커8.14050c79a3a6caadf102.png",
-    "static/media/마커6.png": "/static/media/마커6.0b5169a04d8cbbd115ca.png",
-    "static/media/마커2.png": "/static/media/마커2.03cfa7468d28eeb4616e.png",
-    "static/media/마커4.png": "/static/media/마커4.60e10ad09cc723817134.png",
+    "static/media/marker8.png": "/static/media/marker8.14050c79a3a6caadf102.png",
+    "static/media/marker6.png": "/static/media/marker6.0b5169a04d8cbbd115ca.png",
+    "static/media/marker2.png": "/static/media/marker2.03cfa7468d28eeb4616e.png",
+    "static/media/marker4.png": "/static/media/marker4.60e10ad09cc723817134.png",
     "static/media/Busan.png": "/static/media/Busan.462d2ad427a64731c569.png",
     "static/media/Daegu.png": "/static/media/Daegu.634889f1ad6ca73dfd9b.png",
     "static/media/Incheon.png": "/static/media/Incheon.6081afe6ac7387354d81.png",
@@ -29,17 +29,17 @@
     "static/media/question.png": "/static/media/question.a97e45146636971d8892.png",
     "static/media/win.png": "/static/media/win.3b04e84b4ac011a05f39.png",
     "static/media/free.png": "/static/media/free.f08e0eb18dd974497a88.png",
-    "static/media/기본마커.png": "/static/media/기본마커.504c8f54711786b3c433.png",
+    "static/media/defaultmarker.png": "/static/media/defaultmarker.504c8f54711786b3c433.png",
     "static/media/write.png": "/static/media/write.0f35cbac16b6654f290b.png",
     "static/media/entertainment.png": "/static/media/entertainment.ce952adc26247b255235.png",
     "static/media/movie.png": "/static/media/movie.e6c4e44bcb8cac60c90c.png",
     "static/media/area.png": "/static/media/area.fb6736c996671b49a7ab.png",
     "index.html": "/index.html",
     "main.c2031043.css.map": "/static/css/main.c2031043.css.map",
-    "main.257d726f.js.map": "/static/js/main.257d726f.js.map"
+    "main.b36b43ee.js.map": "/static/js/main.b36b43ee.js.map"
   },
   "entrypoints": [
     "static/css/main.c2031043.css",
-    "static/js/main.257d726f.js"
+    "static/js/main.b36b43ee.js"
   ]
 }

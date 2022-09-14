@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { MdSmartDisplay } from 'react-icons/md';
 
-import markerimg from '../img/기본마커.png'
-import source1 from '../img/마커1.png'
-import source2 from '../img/마커2.png'
-import source3 from '../img/마커3.png'
-import source4 from '../img/마커4.png'
-import source5 from '../img/마커5.png'
-import source6 from '../img/마커6.png'
-import source7 from '../img/마커7.png'
-import source8 from '../img/마커8.png'
-import source9 from '../img/마커9.png'
+import markerimg from '../img/defaultmarker.png'
+import source1 from '../img/marker1.png'
+import source2 from '../img/marker2.png'
+import source3 from '../img/marker3.png'
+import source4 from '../img/marker4.png'
+import source5 from '../img/marker5.png'
+import source6 from '../img/marker6.png'
+import source7 from '../img/marker7.png'
+import source8 from '../img/marker8.png'
+import source9 from '../img/marker9.png'
 
 import '../pages/Course.css'
 const { kakao } = window;
