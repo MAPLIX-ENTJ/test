@@ -12,7 +12,7 @@ function MyPage() {
   console.log(id)
   // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/likelist'
+    const response = await axios.post('http://ec2-3-37-76-88.ap-northeast-2.compute.amazonaws.com:8000/api/likelist'
     // , {body: JSON.stringify({id: id})}
     , {id}
     );

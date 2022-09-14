@@ -29,7 +29,7 @@ function SearchSidebar( {search, searchWord, setSearch, setSearchWord} ){
     
 
 //     const getCardListData = async () => {
-//         const response = await axios.get('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/search', {
+//         const response = await axios.get('http://ec2-3-37-76-88.ap-northeast-2.compute.amazonaws.com:8000/api/search', {
 //             params: {
 //                 'media': media
 //             }

@@ -14,7 +14,7 @@ function Community(props) {
 
   // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.get('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/community');
+    const response = await axios.get('http://ec2-3-37-76-88.ap-northeast-2.compute.amazonaws.com:8000/api/community');
     console.log(response.data);
     // 전체 데이터가 초기 상태
     setPost(response.data);
