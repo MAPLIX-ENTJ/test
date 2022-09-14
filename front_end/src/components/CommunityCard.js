@@ -26,7 +26,7 @@ export default function CommunityCard({card}) {
             </ol>
 
             <div className={styles.img_item}>
-              <img src={'http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com' + card.cm_image} onError={handleImgError}></img>
+              <img src={'http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com' + card.cm_image} onError={handleImgError}></img>
             </div>
         </div>
 

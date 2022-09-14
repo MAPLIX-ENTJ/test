@@ -13,7 +13,7 @@ function MyCourse() {
 
   // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/mycourse', {id});
+    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/mycourse', {id});
     console.log(response.data);
     // 전체 데이터가 초기 상태
     setPost(response.data);

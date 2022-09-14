@@ -35,7 +35,7 @@ const WriteStamp = () => {
       console.log(record_title, record_content);
       e.preventDefault();
       
-      const res = axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/writestamp", {
+      const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/writestamp", {
         id,
         m_num,
         poster,

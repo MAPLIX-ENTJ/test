@@ -74,7 +74,7 @@ function Search({id}) {
 
   const onClickMedia = (m_type) => {
     setAreaModal(false)
-    axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/media", {m_type})
+    axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/media", {m_type})
       .then(function (response) {
         console.log(response.data);
         setMedia(response.data)

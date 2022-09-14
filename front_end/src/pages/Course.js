@@ -65,7 +65,7 @@ const loadData = () => {
         }
 
     if (Object.values(activeCate)[0].flag === true){ // likelist
-        axios.post('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/likelist',{id})
+        axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/likelist',{id})
         .then(function (response) {
         console.log(response.data);
         setCardList(response.data);
@@ -73,8 +73,8 @@ const loadData = () => {
         // console.log(Object.values(activeCate)[0].flag);
         });
     } else if (Object.values(activeCate)[1].flag === true){
-        // axios.get('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/search')
-        axios.get('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/search/title', {params: {
+        // axios.get('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/search')
+        axios.get('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/search/title', {params: {
           'media': ''
       }})
         .then(function (response) {
