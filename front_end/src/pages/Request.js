@@ -26,55 +26,48 @@ const Request = () => {
   const {media_name, r_content, m_type} = state;
   const history = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // const formData = new FormData();
-  //   const r_image = img;
-  //   // formData.append('file', img);
-  //   console.log(r_image);
-  //   // console.log(formData);
-
-  //     const res = axios.post("http://localhost:8000/api/mypage/request", {
-  //       media_name,
-  //       r_content,
-  //       id,
-  //       m_type,
-  //       r_image,
-  //       // formData
-  //     })
-  //     .then((res) => {
-  //       setState({media_name: "", r_content: "", m_type: ""});
-  //       setImg({r_image: ""});
-  //       alert("success!")
-  //     })
-  //     console.log(res);
-  //     // .catch((err) => toast.error(err.response.data));
-  //   setTimeout(() => history.push("/mypage"), 500);
-    
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('image', img.file);
-    formData.append('r_content', r_content);
-    formData.append('media_name', media_name);
-    formData.append('id', id);
-    formData.append('m_type', m_type);
-    
-    console.log(media_name, r_content, id, m_type, img);
-
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
+    if (media_name == "") {
+      alert("요청할 미디어의 제목을 입력해주세요.")
     }
-    axios.post("http://3.38.107.72:8000/api/mypage/request", formData, config)
-    .then((response) => {
-      console.log(response);
-    })
+    else if (r_content == "") {
+      alert("내용을 입력해주세요.")
+    }
+    else if (m_type == "") {
+      alert("요청할 미디어의 유형을 선택해주세요.")
+    }
+    else {
+      if (img.file == null){
+        axios.post("http://localhost:8000/api/mypage/request", {media_name, r_content, id, m_type})
+        .then((response) => {
+          console.log(response);
+          document.location.href = '/'
+        })
+      }
+      else {
+        const config = {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+
+        const formData = new FormData();
+        formData.append('r_content', r_content);
+        formData.append('media_name', media_name);
+        formData.append('id', id);
+        formData.append('m_type', m_type);
+        formData.append('image', img.file);
+
+        axios.post("http://localhost:8000/api/mypage/requestimg", formData, config)
+        .then((response) => {
+          console.log(response);
+          alert("요청 완료")
+          document.location.href = '/'
+        })
+      }
+    } 
   };
 
   const handleInputChange = (e) => {
@@ -111,7 +104,7 @@ const Request = () => {
               type="text"
               id="media_name"
               name="media_name"
-              placeholder='제목'
+              placeholder='요청할 미디어의 제목을 입력해주세요.'
               value={media_name}
               onChange={handleInputChange}
               />
@@ -123,7 +116,7 @@ const Request = () => {
               type="text"
               id="r_content"
               name="r_content"
-              placeholder='내용'
+              placeholder='내용을 입력해주세요.'
               value={r_content}
               onChange={handleInputChange}
               />

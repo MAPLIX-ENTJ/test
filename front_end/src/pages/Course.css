@@ -1,13 +1,13 @@
 .course-sidebar{
     width: 300px;
-    height: 900px;
+    height: 1000px;
     border-radius: 15px;
     box-shadow: 10px 10px 10px gray;
     background-color: #e0edf1;
     /* #E0E3E8 */
     position: absolute;
     z-index: 10;
-    margin: 30px 0 0 30px;
+    margin: 10px 0 0 30px;
 }
 
 #course-line{
@@ -42,7 +42,7 @@ button{
 .modal_course {
     background-color: #e0edf1;
     width: 280px;
-    height: 430px;
+    height: 560px;
     border-radius: 30px;
     box-shadow: 3px 3px 3px #80808075;
     
@@ -51,6 +51,39 @@ button{
     left: 100%;
 }
 
-.infowindowtext {
-    font-size: 30px !important;
+.infowindow_text {
+    font-size: 30px;
   }
+
+
+.customoverlay {
+    position:relative;
+    bottom:85px;
+    border-radius:6px;
+    border: 1px solid #ccc;
+    border-bottom:2px solid #ddd;
+    /* float:left; */
+    background: #e0edf1;
+    display: flex;
+}
+.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.customoverlay button {
+    display: block;
+    
+}
+/* .customoverlay button { float: left; background: #d95050;} */
+    /* display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;} */
+.customoverlay .title {
+    display:block;
+    text-align:center;
+    background:#fff;
+    /* margin-right:35px; */
+    padding:10px 15px;
+    font-size:14px;
+    font-weight:bold;
+}
+.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+
+.modalOn{
+    display: block !important;;
+}

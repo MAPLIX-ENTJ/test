@@ -1,5 +1,5 @@
 .form_container {
-  padding: 40px;
+  padding: 30px;
   box-sizing: border-box;
   background: #EFF1F0;
   margin-top: 20px;
@@ -39,8 +39,12 @@
 
 .content{
   width: 300px;
-  height: 200px; 
+  height: 300px; 
 }
+
+/* .card_list{
+  margin-top: 10px;
+} */
 
 .write_item{
   display: flex;
@@ -82,7 +86,7 @@
 .write_container select{
   height: 30px;
   border: 1px solid #cacaca;
-  width: 100px;
+  /* width: 100px; */
   margin-left: -6px;
 }
 
@@ -104,9 +108,10 @@
   border: 1px solid #cacaca;
   box-shadow: 3px 3px 3px 0px #8080803b;
   cursor: pointer;
+  background-color: #FFFFFF;
 }
 
-.stamp_item{
+.stamp_item1{
   font-size: 14px;
   display: flex;
   flex-direction: column;
@@ -115,7 +120,23 @@
   text-align: left;
 }
 
-.stamp_item select, input{
+.stamp_item2{
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+  margin-left: 75px;
+  text-align: left;
+}
+
+.stamp_item1 select, input{
+  height: 40px;
+  width: 350px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.stamp_item2 select, input{
   height: 40px;
   width: 350px;
   margin-top: 5px;
@@ -143,12 +164,60 @@
   flex-wrap: wrap;
   width: 500px;
   gap: 17px;
+  align-items: center;  
 }
 
-/* .stamp_form_container img{
-  width: 200px;
-  opacity: 0.5;
-} */
+.none_wrapper{
+  padding: 30px 10px;
+}
+
+.none_wrapper span{
+  font-size: 14px;
+  word-break: keep-all;
+}
+
+.none_wrapper button{
+  font-size: 14px;
+  background: white;
+  border-radius: 5px;
+  padding: 10px 80px;
+  margin-top: 20px;
+  box-shadow: 3px 3px 6px rgb(0 0 0 / 27%);
+  cursor: pointer;
+}
+
+.none_result_txt{
+  font-size: 14px;
+  word-break: keep-all;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.none_title{
+  font-size: 18px !important;
+  font-weight: bold;
+  font-family: 'yg-jalnan';
+}
+
+.none_result_title{
+  font-size: 18px !important;
+}
+
+.search_map_input{
+  position: relative;
+}
+
+.search_map_input button{
+  position: absolute;
+  top: 12px;
+  right: 17px;
+}
+
+.stamp_img_pieces{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
 :global #before_img {
   width: 200px;
@@ -157,4 +226,40 @@
 
 :global #after_img {
   width: 200px;
+}
+
+:global #stamp_title {
+  display: table;
+  font-family: 'yg-jalnan';
+  font-size: 20px;
+  align-items: center;  
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global #stamp_record_title {
+  font-weight: bold ;
+}
+
+.media_title {
+  height: 40px;
+  width: 350px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid #cacaca;
+  display:flex;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.media_list {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 75px;
+}
+
+.stamp_modal{
+  margin-top: 30px;
 }

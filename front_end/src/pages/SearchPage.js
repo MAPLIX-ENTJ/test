@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import './SearchPage.css';
-import mountain from "../img/mountain.png";
+import sukso from "../img/sukso.png";
 import forest from "../img/forest.png";
 import sea from "../img/sea.png";
 import river from "../img/river.png";
@@ -10,11 +10,15 @@ import acitivity from "../img/activity.png";
 import tour from "../img/tour.png";
 import etc from "../img/etc.png";
 import MapContainer from '../components/MapContainer';
+import { GoSearch } from "react-icons/go";
+
 import SearchSidebar from '../components/SearchSidebar';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styles from "../components/Community.module.css";
 import SearchResultCard from '../components/SearchResultCard';
+
+// import Paging from "../components/Pagination"; //v1
 import Pagination from '../components/Pagination';
 
 const { kakao } = window;
@@ -46,7 +50,7 @@ function SearchPage () {
   const [filtered, setFiltered] = useState([]); 
 
   const initialCate = [
-    { category : "mountain" , flag : true, realCate: "산"},
+    { category : "sukso" , flag : true, realCate: "숙소"},
     { category : "forest" , flag : true, realCate: "숲"},
     { category : "sea" , flag : true, realCate: "바다"},
     { category : "river" , flag : true, realCate: "강"},
@@ -61,7 +65,7 @@ function SearchPage () {
   // 데이터 받아오기
   const loadData = () => {
     if ( searchCate === "title"){
-      axios.get('http://3.38.107.72:8000/api/search/title', {
+      axios.get('http://localhost:8000/api/search/title', {
         params: {
             'media': search
         }
@@ -72,7 +76,7 @@ function SearchPage () {
       });
 
     } else if ( searchCate === "area"){
-      axios.get('http://3.38.107.72:8000/api/search/area', {
+      axios.get('http://localhost:8000/api/search/area', {
         params: {
             'media': search
         }
@@ -127,21 +131,12 @@ const filterOn = (e) => {
   document.getElementsByClassName('filterOn')[0].classList.remove('filterOn') 
   }
 
-  const newnew = cardList.filter((card) => card.category === e.target.id)
+  const newnew = cardList.filter((card) => card.category.includes(e.target.id) )
 
   console.log(newnew)
 
   console.log("필터 버튼 눌림" + e.target.id);
   e.target.parentElement.classList.add('filterOn');
-  // debugger
-  // const newKeywords = activeCate.map(k => {
-  //   if (k.category === e.target.id) {
-  //     return {...k, flag : true};
-  //   }else {
-  //     return {...k, flag : false};
-  //   }
-  // });
-  // setActiveCate((prev) => {return newKeywords});
 
   setFiltered(newnew);
   //console.log(Object.values(activeCate));
@@ -170,28 +165,49 @@ const onClickSearchbar = (e) => {
   console.log('파라미터'+ search);
 }
 
-const ClickedSearchCate = (e) => {
-  e.preventDefault();
-  searchCate = e.target.id;
-  var temp = document.getElementById('searchbox').value
-  navigate(`/search/${searchCate}/${temp}`);
-}
-const clickall = () => {
-  setActiveCate((activeCate) =>  activeCate.map(k => {
-      return { ...k, flag : !k.flag,};
-  }));
-}
+  const ClickedSearchCate = (e) => {
+    e.preventDefault();
+    searchCate = e.target.id;
+    var temp = document.getElementById('searchbox').value
+    navigate(`/search/${searchCate}/${temp}`);
+  }
+  
+  const clickall = () => {
+    setActiveCate((activeCate) =>  activeCate.map(k => {
+        return { ...k, flag : !k.flag,};
+    }));
+  }
 
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostsPerPage] = useState(5);
+  // 페이지네이션
+  const [currentpage, setCurrentpage] = useState(1); //현재페이지
+  const [postsPerPage, setPostsPerPage] = useState(6); //페이지당 아이템 개수
 
-const indexOfLast = currentPage * postsPerPage; //postsPerPage : 총 데이터를 postsPerPage만큼 등분해서 보여줍니다.
-const indexOfFirst = indexOfLast - postsPerPage;
-const currentPosts = (posts) => {
-  let currentPosts = 0;
-  currentPosts = filtered.slice(indexOfFirst, indexOfLast);
-  return currentPosts;
-};
+  const [indexOfLastPost, setIndexOfLastPost] = useState(0);
+  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
+  // const [currentPosts, setCurrentPosts] = useState(0);
+
+  useEffect(() => {
+    setIndexOfLastPost(currentpage * postsPerPage);
+    setIndexOfFirstPost(indexOfLastPost - postsPerPage);
+    // CurrentPosts(filtered.slice(indexOfFirstPost, indexOfLastPost));
+  }, [currentpage, indexOfFirstPost, indexOfLastPost, filtered, postsPerPage]);
+  
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = filtered.slice(indexOfFirstPost, indexOfLastPost);
+    return currentPosts;
+  };
+  // debugger
+  // const setPage = (e) => {
+  //   setCurrentpage(e);
+  // };
+
+  // const [currentPage, setCurrentPage] = useState(1); //현재 페이지 번호
+  // const [postsPerPage, setPostsPerPage] = useState(6);
+
+  // const indexOfLast = currentpage * postsPerPage; //postsPerPage : 총 데이터를 postsPerPage만큼 등분해서 보여줍니다.
+  // const indexOfFirst = indexOfLast - postsPerPage;
+
 
 
 
@@ -202,8 +218,8 @@ const currentPosts = (posts) => {
           <div className='Filter'>
 
             <button className='FilterIcons'  onClick={filterOn}>
-              <img src={mountain} alt = "mountain" id="산" idx="0" kid="산"/>
-              <li>#산</li>
+              <img src={sukso} alt = "sukso" id="숙소" idx="0" kid="산"/>
+              <li>#숙소</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
@@ -256,6 +272,7 @@ const currentPosts = (posts) => {
               <li><button className={searchCate === 'area' && "btn_active"} onClick={ClickedSearchCate} id="area">area</button></li>
             </div>
             
+          <div className={styles.search_map_input}>
             <input
                 id="searchbox"
                 type="text" 
@@ -266,12 +283,15 @@ const currentPosts = (posts) => {
                 value={search}
                 />
             
-            <button type='submit' onClick={onClickSearchbar} value={search}>검색</button>
+            <button type='submit' onClick={onClickSearchbar} value={search}><GoSearch/></button>
             {/* <button className='FilterIcons'  onClick={clickall}>
               <li>#전체 결과 조회하기</li>
             </button> */}
+          </div>
 
+          {filtered.length !== 0 ?
             <div className={styles.card_list}>
+                {/* { filtered.map((card, index) => { */}
                 { filtered && currentPosts(filtered).map((card, index) => {
                     return (
                         <div card =  {card}>
@@ -280,20 +300,40 @@ const currentPosts = (posts) => {
                                 card={card}
                                 // isWishList={wishList.includes(card.lecture_id)}
                                  />
-                           
-
                         </div>
                     );
                 })}
             </div>
-            
+            :
+            <div className={styles.none_wrapper}>
+              <span className={styles.none_title}>'{search}'</span>
+              <span className={styles.none_result_title}>에 대한 검색결과가 없습니다.</span>
+              <div className={styles.none_result_txt}>
+                단어의 철자가 정확한지 확인해 보세요.<br />
+                한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.<br />
+                검색어의 단어 수를 줄이거나,<br/> 보다 일반적인 검색어로 다시 검색해 보세요.<br />
+                두 단어 이상의 검색어인 경우,<br/> 띄어쓰기를 확인해 보세요.<br />
+                키워드 수를 줄여보세요.
+              </div>
+              <div styles={{fontSize: "18px"}}>Contact Us</div>
+              <span>원하는 드라마, 영화, 예능의 촬영지가 없다면 </span>
+              <span className={styles.none_result_request}>'요청하기'</span>
+              <span>를 이용하세요</span>
+              <Link to='/mypage/request'>
+                <button>요청하기</button>
+              </Link>
+            </div>
+            }
+            {/* <Paging page={currentpage} item={6} count={filtered.length} setPage={setPage} /> */}
+           {/* <Paging page={currentpage} count={filtered.length} setPage={setPage} /> */}
             <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={filtered.length}
-                paginate={setCurrentPage}
+                paginate={setCurrentpage}
+                end={10}
               />
         </div>
-        <MapContainer activeCate={activeCate} cardList={filtered} courselist={courselist}/>
+        <MapContainer activeCate={activeCate} cardList={filtered} courselist={courselist} pagename={'SearchPage'}/>
 
 
         </div>
@@ -345,13 +385,13 @@ export default SearchPage;
 //   const loadData = async () => {
 //     let response;
 //     if ( searchCate === "title"){
-//       response = await axios.get('http://3.38.107.72:8000/api/search/title', {
+//       response = await axios.get('http://localhost:8000/api/search/title', {
 //         params: {
 //             'media': search
 //         }
 //       });
 //     } else if ( searchCate === "area"){
-//       response = await axios.get('http://3.38.107.72:8000/api/search/area', {
+//       response = await axios.get('http://localhost:8000/api/search/area', {
 //         params: {
 //             'media': search
 //         }

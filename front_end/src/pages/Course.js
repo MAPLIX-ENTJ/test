@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './Course.css';
-import mountain from "../img/mountain.png";
+import sukso from "../img/sukso.png";
 import forest from "../img/forest.png";
 import sea from "../img/sea.png";
 import river from "../img/river.png";
@@ -8,30 +8,41 @@ import restaurant from "../img/restaurant.png";
 import cafe from "../img/cafe.png";
 import acitivity from "../img/activity.png";
 import tour from "../img/tour.png";
-import like from "../img/like.png";
+import mediaplace from "../img/mediaplace.png";
+import likelist from "../img/likelist.png";
 import MapContainer from '../components/MapContainer';
 import CourseAdd from '../components/CourseAdd'
-import Footer from '../components/Footer';
 
-import styled from 'styled-components';
 import axios from "axios";
 const { kakao } = window;
 function Course(){
 
+  const initialCourse = [
+    { order : 1 , course : null },
+    { order : 2 , course : null },
+    { order : 3 , course : null },
+    { order : 4 , course : null },
+    { order : 5 , course : null },
+    { order : 6 , course : null },
+    { order : 7 , course : null },
+    { order : 8 , course : null },
+    { order : 9 , course : null },
+  ];
+
   
   const [result, setResult] = useState([]);
+  const [courselist, setCourselist] = useState(initialCourse);
   const [activeCate, setActiveCate] = useState(null);
   
   const [inputText, setInputText] = useState("");
   const [place, setPlace] = useState("");
-
 
   const id = window.localStorage.getItem("id");
 
   const initialCate = [ // 필터 어떤거 클릭됐는지, true : 클릭된상태
   { category : "likelist", flag : true, realCate: "즐겨찾기"},
   { category : "mediaplace", flag : false, realCate: "촬영지"},  
-  { category : "mountain" , flag : false, realCate: "산"},
+  { category : "sukso" , flag : false, realCate: "숙소"},
   { category : "forest" , flag : false, realCate: "숲"},
   { category : "sea" , flag : false, realCate: "바다"},
   { category : "river" , flag : false, realCate: "강"},
@@ -42,16 +53,7 @@ function Course(){
   { category : "etc" , flag : false, realCate: "기타"}
 ];
 
-// let nowkakaocate = activeCate.filter(k => {
-//   if (k.flag !== "likelist" || k.flag !== 'mediaplace'){
-//     if (k.flag )
-//   }
-//       return k.flag === true ? true : false })
-
 const [cardList, setCardList] = useState([])
-
-const [courselist, setCourselist] = useState([])
-
 const loadData = () => {
 
   let nowcate = "";
@@ -63,7 +65,7 @@ const loadData = () => {
         }
 
     if (Object.values(activeCate)[0].flag === true){ // likelist
-        axios.post('http://3.38.107.72:8000/api/likelist',{id})
+        axios.post('http://localhost:8000/api/likelist',{id})
         .then(function (response) {
         console.log(response.data);
         setCardList(response.data);
@@ -71,8 +73,8 @@ const loadData = () => {
         // console.log(Object.values(activeCate)[0].flag);
         });
     } else if (Object.values(activeCate)[1].flag === true){
-        // axios.get('http://3.38.107.72:8000/api/search')
-        axios.get('http://3.38.107.72:8000/api/search/title', {params: {
+        // axios.get('http://localhost:8000/api/search')
+        axios.get('http://localhost:8000/api/search/title', {params: {
           'media': ''
       }})
         .then(function (response) {
@@ -81,6 +83,9 @@ const loadData = () => {
         
     } else{
       var ps = new kakao.maps.services.Places(); 
+      if (nowcate === '바다'){
+        nowcate = '해변'
+      }
 
       ps.keywordSearch(nowcate , placesSearchCB); 
       // ps.keywordSearch(nowcate , placesSearchCB, {page: 2 , size : 15}); 
@@ -93,7 +98,7 @@ const loadData = () => {
           console.log(data)
           const newnew = []
           for (var a=0; a < data.length; a++){
-            newnew.push({address : data[a].address_name, category : nowcate, p_name : data[a].place_name, p_num : a})
+            newnew.push({address : data[a].address_name, category : nowcate, p_name : data[a].place_name, p_num : a, p_y : data[a].y, p_x : data[a].x})
           }
           setCardList(newnew);
           
@@ -137,9 +142,13 @@ useEffect(()=> {
 
   // 단일필터
   const filterOn = (e) => {
-  
+
+    if(document.getElementsByClassName('filterOn').length !== 0) {
+      document.getElementsByClassName('filterOn')[0].classList.remove('filterOn') 
+      }
     const newKeywords = activeCate.map(k => {
       if (k.category === e.target.id) {
+        e.target.parentElement.classList.add('filterOn');
 
         return {...k, flag : true};
       }else {
@@ -174,18 +183,18 @@ useEffect(()=> {
           <h1>Maplix</h1>
           <div className='Filter'>
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={like} alt = "likelist" id='likelist' />
+              <img src={likelist} alt = "likelist" id='likelist' />
               <li>#즐겨찾기</li>            
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={like} alt = "mediaplace" id='mediaplace' />
+              <img src={mediaplace} alt = "mediaplace" id='mediaplace' />
               <li>#촬영지</li>            
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={mountain} alt = "mountain" id='mountain'/>
-              <li>#산</li>
+              <img src={sukso} alt = "sukso" id='sukso'/>
+              <li>#숙소</li>
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
@@ -214,7 +223,7 @@ useEffect(()=> {
             </button>
 
             <button className='FilterIcons' onClick={filterOn}>
-              <img src={acitivity} alt = "activity" />
+              <img src={acitivity} alt = "activity" id="activity" />
               <li>#액티비티</li>
             </button>
 
@@ -227,25 +236,11 @@ useEffect(()=> {
         </div>
 
         <div className='Lower'>
-          {/* <form className="inputForm" onSubmit={handleSubmit}>
-            <input
-              placeholder="Search Place..."
-              onChange={onChange}
-              value={inputText}
-            />
-            <button type="submit">검색</button>
-          </form> */}
-
           <div className="course-sidebar">
             <div id="course-line"></div>
-            <CourseAdd activeCate={activeCate} cardList={cardList} courselist={courselist} setCourselist={setCourselist}/>
+            <CourseAdd activeCate={activeCate} cardList={cardList} courselist={courselist} setCourselist={setCourselist} />
           </div>
-          <MapContainer activeCate={activeCate} cardList={cardList} courselist={courselist}  />      
-          {/* <div
-          id="kakaoMap"
-          style={{
-            height: '1000px',
-          }}></div> */}
+          <MapContainer activeCate={activeCate} cardList={cardList} courselist={courselist} setCourselist={setCourselist} pagename={'Course'} />      
           </div>      
         </div>
     )

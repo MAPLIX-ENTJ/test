@@ -13,7 +13,7 @@ function MyCourse() {
 
   // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://3.38.107.72:8000/api/mycourse', {id});
+    const response = await axios.post('http://localhost:8000/api/mycourse', {id});
     console.log(response.data);
     // 전체 데이터가 초기 상태
     setPost(response.data);
@@ -35,9 +35,9 @@ function MyCourse() {
 
   return (
     <>
-     {modal === true ? <Modal open={Modal} closeModal={() => {setModal(false);}} /> : null}
+     {/* {modal === true ? <Modal open={Modal} closeModal={() => {setModal(false);}} /> : null} */}
     <div className={styles.main_container}>
-      <Layout activeMenu="mypage">
+      <Layout activeMenu="mycourse">
       <div className={styles.title_like}>
         내 경로
       </div>

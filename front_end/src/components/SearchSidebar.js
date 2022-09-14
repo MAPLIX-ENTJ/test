@@ -32,7 +32,7 @@ function SearchSidebar( {search, searchWord, setSearch, setSearchWord} ){
     
 
 //     const getCardListData = async () => {
-//         const response = await axios.get('http://3.38.107.72:8000/api/search', {
+//         const response = await axios.get('http://localhost:8000/api/search', {
 //             params: {
 //                 'media': media
 //             }

@@ -2,6 +2,7 @@
     padding: 20px 80px;
     height: 150px;
     background-color:#EFF1F0;
+    position: relative;
 
     font-size: 18px;
     font-weight: bold;
@@ -14,6 +15,7 @@
     max-width: fit-content;
     align-self: center;
     margin-top: 18px;
+    z-index: 1;
 }
 
 .third_container {
@@ -69,4 +71,106 @@
 
     font-size: 16px;
     padding: 10px 20px;
+}
+
+.recommend_media_item{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.recommend_media_item img{
+        width: 100px;
+        height: 100px;
+        margin-top: 0px;
+}
+
+.third_img{
+    position: relative;
+}
+
+.RecommendMediaCourse{
+    position: absolute;
+    display: none;
+    z-index: 1;
+    background: #eff1f0;
+    padding: 10px;
+    border-radius: 4px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.third_img:hover .RecommendMediaCourse{
+    display: block !important;
+}
+
+.third_img img:hover{
+    cursor: pointer;
+}
+
+.recommend_media_name{
+    font-size: 14px;
+    font-family: 'yg-jalnan';
+    text-align: center;
+}
+
+.recommend_media_txt{
+    font-size: 13px;
+    text-align: left;
+    word-break: keep-all;
+    align-self: center;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.media_modal {
+  background-color: #e0edf1;
+  box-shadow: 5px 3px 5px #0000003d;
+  position: absolute;
+  z-index: 1;
+  /* top: 190px; */
+  width: 90%;
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 40px;
+}
+
+.second_container_items {
+    display: flex;
+    align-self: center;
+    gap: 60px;
+}
+
+.modal_media_list{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2px;
+}
+
+.media_modal_area{
+    background-color: #e0edf1;
+    box-shadow: 5px 3px 5px #0000003d;
+    position: absolute;
+    z-index: 1;
+    /* top: 190px; */
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.media_modal_area_list button{
+    font-size: 14px;
+    font-family: 'yg-jalnan';
+    text-align: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 7px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.media_modal_area_list{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
