@@ -103,7 +103,7 @@ export default function SearchResultCard({card}) {
         <div className={styles.search_title}>{card.p_name}</div>
         <div className={styles.search_address}>{card.address}</div>
         <div className={styles.search_detail_tag}>#{card.m_name}</div>
-        <div className={styles.search_detail_tag}>#{card.category}</div>
+        <div className={styles.search_detail_tag}>{card.category}</div>
         <button onClick={addLikelist}><MdBookmarkBorder size="20px"/></button>
         {/* <div img_box> */}
             {/* <ol> */}
