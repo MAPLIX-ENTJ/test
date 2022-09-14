@@ -344,12 +344,12 @@ export default function WriteStamp({card, openModal}) {
         <div className={styles.form_container}>
           
           <img  className={styles2.sm_img} src={'http://ec2-3-37-76-88.ap-northeast-2.compute.amazonaws.com:8000' + record_image}></img>
-          <div className={styles.write_item}>
+          <div className={styles.record_title}>
             {/* <label htmlFor='record_title'>제목</label> */}
             <ul id="stamp_record_title">{record.record_title}</ul>
           </div>
-
-          <div className={styles.write_item}>
+          <br></br>
+          <div className={styles.record_content}>
             {/* <label htmlFor='record_content'>내용</label> */}
             <ul id="stamp_record_content">{record.record_content}</ul>
           </div>

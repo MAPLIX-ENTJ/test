@@ -2,12 +2,14 @@
 import { Link } from 'react-router-dom';
 import styles from './MypageSidebar.module.css'
 import {BiCaretRight} from 'react-icons/bi';
+import profile from '../img/profile.png';
 
 function Menu({ activeMenu }) {
     console.log('현재 활성화된 메뉴 : ', activeMenu);
   return (
     <div className={styles.menu}>
       <div className={styles.user_img}>
+      <img src={profile}></img>
       </div>
       <div className={styles.user_nickname}>
         {window.localStorage.getItem("nick_name")}

@@ -20,6 +20,14 @@
   background-color: white;
 }
 
+.user_img img{
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
 .user_nickname {
   margin-bottom: 20px;
   font-size: 20px;
