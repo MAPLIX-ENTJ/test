@@ -31,7 +31,7 @@ export default function WriteStamp({card, openModal}) {
 
     // 데이터 가져오기
   const loadPost = async () => {
-    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck'
+    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     if (response.data[0].record_image1 != undefined) 
@@ -39,7 +39,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost2 = async () => {
-    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck'
+    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     if (response.data[0].record_image2 != undefined) 
@@ -47,7 +47,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost3 = async () => {
-    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck'
+    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     if (response.data[0].record_image3 != undefined) 
@@ -55,7 +55,7 @@ export default function WriteStamp({card, openModal}) {
   };
 
   const loadPost4 = async () => {
-    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck'
+    const response = await axios.post('http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck'
     , {id, m_num, poster}
     );
     if (response.data[0].record_image4 != undefined) 
@@ -109,7 +109,7 @@ export default function WriteStamp({card, openModal}) {
         alert("이미지를 등록해주세요.")
       }
       else {
-        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/writestamp", formData, config)
+        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/writestamp", formData, config)
         .then((response) => {
           if (part == 1) {
             alert("도장깨기 #1 글 작성 완료")
@@ -143,7 +143,7 @@ export default function WriteStamp({card, openModal}) {
         setStampModal(!stampModal);
       }
       else if (record1 == true) {
-        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck", {
+        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck", {
           id,
           m_num,
           poster,
@@ -169,7 +169,7 @@ export default function WriteStamp({card, openModal}) {
         setStampModal(!stampModal);
       }
       else if (record2 == true) {
-        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck", {
+        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck", {
           id,
           m_num,
           poster,
@@ -196,7 +196,7 @@ export default function WriteStamp({card, openModal}) {
       }
       else if (record3 == true) {
         setStampModal(false);
-        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck", {
+        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck", {
           id,
           m_num,
           poster,
@@ -222,7 +222,7 @@ export default function WriteStamp({card, openModal}) {
       }
       else if (record4 == true) {
         setStampModal(false);
-        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/stampcheck", {
+        const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/stampcheck", {
           id,
           m_num,
           poster,
@@ -343,7 +343,7 @@ export default function WriteStamp({card, openModal}) {
         <ul id="stamp_title">도장깨기 #{part} <button id="modalCloseBtn" onClick={() => setStampRecordModal(false)}>✖</button></ul>
         <div className={styles.form_container}>
           
-          <img  className={styles2.sm_img} src={'http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com' + record_image}></img>
+          <img  className={styles2.sm_img} src={'http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000' + record_image}></img>
           <div className={styles.write_item}>
             {/* <label htmlFor='record_title'>제목</label> */}
             <ul id="stamp_record_title">{record.record_title}</ul>

@@ -43,7 +43,7 @@ const SignUp = () => {
 
     console.log(state.id);
 
-    fetch("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/checkid", {
+    fetch("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/checkid", {
         method: "POST",
         headers: {
           "Content-Type" : "application/json"
@@ -92,7 +92,7 @@ const SignUp = () => {
 
     console.log(state.id);
 
-    fetch("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/checknickname", {
+    fetch("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/checknickname", {
         method: "POST",
         headers: {
             "Content-Type" : "application/json"
@@ -221,7 +221,7 @@ const SignUp = () => {
       // toast.error("Please provide value into each input field");
     } else {
         console.log(email, id, pw, u_name, birth, gender, nick_name);
-      const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/signup", {
+      const res = axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/signup", {
         email,
         id,
         pw,
@@ -233,7 +233,7 @@ const SignUp = () => {
         check_id,
       })
       .then((res) => {
-        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/poster", {id})
+        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/poster", {id})
         setState({email:"", id: "", pw: "", confirm_pw:"", u_name: "", birth: "", gender: "", nick_name: "", check_id:false});
         alert("회원가입 완료")
         document.location.href = '/login'

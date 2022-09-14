@@ -35,7 +35,7 @@ const WritePost = () => {
     }
     else {
       if (img.file == null){
-        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/community/writepost", {cm_title, cm_content, writer, cm_type})
+        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/community/writepost", {cm_title, cm_content, writer, cm_type})
         .then((response) => {
           console.log(response);
         })
@@ -54,7 +54,7 @@ const WritePost = () => {
         formData.append('writer', writer);
         formData.append('cm_type', cm_type);
 
-        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/community/writepostimg", formData, config)
+        axios.post("http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/community/writepostimg", formData, config)
         .then((response) => {
           console.log(response);
           document.location.href = '/community'
