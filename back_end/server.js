@@ -565,11 +565,11 @@ app.post("/api/stamp", (req, res) => {
   });
 });
 
-app.post("/api/poster", (req, res) => {
+app.get("/api/poster", (req, res) => {
   const id = req.body.id;
 
   console.log(id)
-  for (i = 1; i < 206; i++) {
+  for (i = 101; i < 200; i++) {
     const poster = 'poster' + i;
     const m_num = i;
     const sqlQuery = "INSERT INTO test.stamp (id, m_num, poster) VALUES (?, ?, ?);";
