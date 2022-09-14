@@ -566,8 +566,8 @@ app.post("/api/stamp", (req, res) => {
 });
 
 app.get("/api/poster", (req, res) => {
-  const id = req.body.id;
-
+  // const id = req.body.id;
+const id = 'entj';
   console.log(id)
   for (i = 101; i < 200; i++) {
     const poster = 'poster' + i;
