@@ -50,7 +50,7 @@ export default function CommunityCard({card, openModal}) {
       {/* <div className={styles.likeList_container} onClick={() => {setCourseModal(!courseModal)}}>     */}
       <div className={styles.likeList_container} onClick={clickCourseModal}>    
           <div className={styles.like_img}>
-          <img className={styles.like_img} src={'http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000' + card.mc_image} onError={handleImgError}></img>
+          <img className={styles.like_img} src={'http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com' + card.mc_image} onError={handleImgError}></img>
           </div> 
 
           <div className={styles.like_txt}>

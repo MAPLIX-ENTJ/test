@@ -25,7 +25,7 @@ const SearchPage = ( props ) => {
   const [search, setSearch] = useState(searchWord);
 
   const loadData = async () => {
-    const response = await axios.get('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/search', {
+    const response = await axios.get('http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/search', {
         params: {
             'media': searchWord
         }

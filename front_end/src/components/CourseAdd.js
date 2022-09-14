@@ -338,7 +338,7 @@ const CourseAdd = (props) => {
         }
         else {
             if (img.file == null){
-                axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/coursecreate", {id, mc_title, mc_content, count, course1, course2, course3, course4, course5, course6, course7, course8, course9})
+                axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/coursecreate", {id, mc_title, mc_content, count, course1, course2, course3, course4, course5, course6, course7, course8, course9})
                 .then((response) => {
                     console.log(response);
                     alert("내 코스 만들기 완료")
@@ -346,7 +346,7 @@ const CourseAdd = (props) => {
                 })
             }
             else {
-                axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/coursecreateimg", formData, config)
+                axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/coursecreateimg", formData, config)
                 .then((response) => {
                     console.log(response);
                     alert("내 코스 만들기 완료")

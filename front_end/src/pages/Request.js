@@ -40,7 +40,7 @@ const Request = () => {
     }
     else {
       if (img.file == null){
-        axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/mypage/request", {media_name, r_content, id, m_type})
+        axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/mypage/request", {media_name, r_content, id, m_type})
         .then((response) => {
           console.log(response);
           document.location.href = '/'
@@ -60,7 +60,7 @@ const Request = () => {
         formData.append('m_type', m_type);
         formData.append('image', img.file);
 
-        axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/mypage/requestimg", formData, config)
+        axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/mypage/requestimg", formData, config)
         .then((response) => {
           console.log(response);
           alert("요청 완료")

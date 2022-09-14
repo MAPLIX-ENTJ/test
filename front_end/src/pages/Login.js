@@ -24,7 +24,7 @@ const Login = () =>  {
     
         console.log(state.id);
     
-        fetch("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/api/login", {
+        fetch("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/api/login", {
             method: "POST",
             headers: {
             "Content-Type" : "application/json"
@@ -49,7 +49,7 @@ const Login = () =>  {
                     })
                 }
                 else {
-                    // const res = axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com:8000/", {id,pw})
+                    // const res = axios.post("http://http://ec2-3-38-107-72.ap-northeast-2.compute.amazonaws.com/", {id,pw})
                     // .then((res) => {
                         alert("로그인 성공")
                         const nick_name = json.nick_name
