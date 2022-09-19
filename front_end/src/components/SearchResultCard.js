@@ -102,7 +102,7 @@ export default function SearchResultCard({card}) {
       <div className={styles.search_container} onClick={onClickPlace}>    
         <div className={styles.search_title}>{card.p_name}</div>
         <div className={styles.search_address}>{card.address}</div>
-        <div className={styles.search_detail_tag}>#{card.m_name}</div>
+        <div className={styles.search_detail_tag}># {card.m_name}</div>
         <div className={styles.search_detail_tag}>{card.category}</div>
         <button onClick={addLikelist}><MdBookmarkBorder size="20px"/></button>
         {/* <div img_box> */}
@@ -133,10 +133,12 @@ export default function SearchResultCard({card}) {
 
           </div>
           <div className={styles.sm_title}>{card.p_name}</div>
-          <ul>{card.address}</ul>
-          <ul>#{card.m_name}</ul>
-          <ul>#{card.category}</ul>
-          <ul>#{card.description}</ul>
+          <ul className={styles.sm_address}>{card.address}</ul>
+          <br></br>
+          <ul># {card.m_name}</ul>
+          <ul>{card.category}</ul>
+          <br></br>
+          <ul>{card.description}</ul>
           <button className="modal_close_btn" onClick={(e)=>{e.target.parentElement.classList.remove('modalOn')}}>X</button>
       </div> 
     </div>
