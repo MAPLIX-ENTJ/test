@@ -34,9 +34,9 @@ export default function SearchResultCard({card, setResult, lastCourse}) {
                 <ul className="mci-address">{card.address}</ul>
                 {card.m_name == undefined ? 
                   null
-                : <ul>#{card.m_name}</ul>}
-                <ul>#{card.category}</ul>
-                <ul className="mci-length"># "{lastCourse.course.p_name}" 과(와) {Math.round(moveLine.getLength()) / 1000 + 'Km 떨어진 거리'}</ul>
+                : <ul># {card.m_name}</ul>}
+                <ul>{card.category}</ul>
+                <ul className="mci-length">"{lastCourse.course.p_name}" 과(와) {Math.round(moveLine.getLength()) / 1000 + 'Km 떨어진 거리'}</ul>
                 {/* <button onClick={onClickPlace}>추가하기</button> */}
             
             </ol>
